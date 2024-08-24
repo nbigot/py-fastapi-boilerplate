@@ -1,0 +1,23 @@
+# useles files
+.gitignore
+.dockerignore
+Dockerfile*
+docker-compose*
+logstash
+docker
+*.cfg
+tox.ini
+README.md
+
+# useless folders
+__pycache__
+.git
+.venv
+.vscode
+.pytest_cache
+.hypothesis
+docs
+tests
+reports
+infra
+gitlab-ci

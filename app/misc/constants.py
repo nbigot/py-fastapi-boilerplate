@@ -1,0 +1,7 @@
+TAG_ADMIN = "Admin"
+
+PROJECT_NAME = "demo-project"
+ROOT_PATH = f"/{PROJECT_NAME}"
+ENDPOINT_API_V1 = f"{ROOT_PATH}/api/v1"
+
+AWS_ECS_ENV_KEY = ("AWS_ECS_ENV_VARIABLES",)
