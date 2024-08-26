@@ -43,6 +43,8 @@ line-length = 120
 [tool.ruff.lint]
 # Enable preview features.
 preview = true
+# Enable the isort plugin
+select = ["I001"]
 
 [tool.ruff.format]
 # Like Black, use double quotes for strings.

@@ -4,14 +4,10 @@ import logging
 from fastapi import Request
 
 from app.client.auth_client import AuthClient
+from app.client.db_client import DBClient
 from app.exception import AppException
 from app.misc.permissions_checker import check_demo_permissions
-from app.router.default.models import (
-    ApiV1ListTablesResponse,
-    ApiV1RequestListTables,
-    # Table,
-)
-from app.client.db_client import DBClient
+from app.router.default.models import ApiV1ListTablesResponse, ApiV1RequestListTables
 
 
 class ServiceManager:

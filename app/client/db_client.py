@@ -1,8 +1,9 @@
 import logging
-from app.db.mysql.connection import MySQLConnectionArgs
+
 from app.client.mysql_client import MySQLClient
-from app.db.postgresql.connection import PostgreSQLConnectionArgs
 from app.client.postgresql_client import PostgreSQLClient
+from app.db.mysql.connection import MySQLConnectionArgs
+from app.db.postgresql.connection import PostgreSQLConnectionArgs
 from app.router.default.models import ApiV1ListTablesResponse
 
 

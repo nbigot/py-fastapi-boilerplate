@@ -1,21 +1,16 @@
 # -*- coding: utf-8 -*-
 # pylint: disable=W0718,R0912,R0915
 
-from typing import Any, Dict, List, Optional, Tuple, Type, Union
 import uuid
+from typing import Any, Dict, List, Optional, Tuple, Type, Union
 
 import pymysql
 from pymysql.cursors import Cursor
 from pymysql.err import OperationalError
 
-from app.exception import AppException
-from app.exception import AppDBConnectionError, AppDBError, AppDBRetryableError
-from app.exception.mysql import (
-    MYSQL_ERRORS,
-    MYSQL_RECOVERABLE_ERRORS,
-    ERROR_CANNOT_EXECUTE_MYSQL_COMMAND,
-)
 from app.db.mysql.helper import get_mysql_cnx, sql_execute, sql_select
+from app.exception import AppDBConnectionError, AppDBError, AppDBRetryableError, AppException
+from app.exception.mysql import ERROR_CANNOT_EXECUTE_MYSQL_COMMAND, MYSQL_ERRORS, MYSQL_RECOVERABLE_ERRORS
 
 
 class MySQLConnectionArgs:

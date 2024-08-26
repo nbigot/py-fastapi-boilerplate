@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+from datetime import datetime
 from typing import Optional, Union
 
 from fastapi import APIRouter, Depends, Query, Request
@@ -12,11 +13,7 @@ from app.misc.constants import ENDPOINT_API_V1
 from app.misc.errors import HTTP_NotImplementedError
 from app.misc.models import ErrorResponse
 from app.misc.permissions_checker import user_is_authenticated
-from app.router.default.models import (
-    ApiV1GetDateResponse,
-    ApiV1ListTablesResponse,
-    ApiV1RequestListTables,
-)
+from app.router.default.models import ApiV1GetDateResponse, ApiV1ListTablesResponse, ApiV1RequestListTables
 
 router = APIRouter(prefix=ENDPOINT_API_V1, dependencies=[Depends(user_is_authenticated)])
 
@@ -58,6 +55,23 @@ def list_tables(
     tags=["Demo"],
 )
 def get_date() -> Union[ApiV1GetDateResponse, ErrorResponse]:
+    """
+    Return the date
+    """
+    return ApiV1GetDateResponse(date=datetime.now())
+
+
+@router.get(
+    "/demo/error/",
+    response_model=ErrorResponse,
+    responses={
+        "500": {"model": ErrorResponse},
+    },
+    summary="Return an error",
+    operation_id="GetError",
+    tags=["Demo"],
+)
+def get_error() -> ErrorResponse:
     """
     Return the date
     """

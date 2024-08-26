@@ -1,9 +1,4 @@
-from pymysql.constants.ER import (
-    DUP_ENTRY,
-    LOCK_WAIT_TIMEOUT,
-    NO_SUCH_TABLE,
-    TABLEACCESS_DENIED_ERROR,
-)
+from pymysql.constants.ER import DUP_ENTRY, LOCK_WAIT_TIMEOUT, NO_SUCH_TABLE, TABLEACCESS_DENIED_ERROR
 
 # Examples of retryable errors:
 # Code: 2013 Lost connection to MySQL server during query:

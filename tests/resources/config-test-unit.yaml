@@ -1,0 +1,88 @@
+environment: "unit-test"
+verbose: true
+
+aws:
+  config:
+    region_name: "eu-west-1"
+  profile_name: ""
+
+fastapi:
+  debug: true
+
+logging:
+  version: 1
+  disable_existing_loggers: true
+  loggers:
+    mysql:
+      level: INFO
+      propagate: true
+    db:
+      level: INFO
+      propagate: true
+    app:
+      level: INFO
+      propagate: true
+    asyncio:
+      level: WARNING
+      propagate: true
+    uvicorn:
+      level: INFO
+      propagate: true
+    uvicorn.access:
+      level: INFO
+      propagate: true
+    uvicorn.error:
+      level: INFO
+      propagate: true
+    fastapi:
+      level: WARNING
+      propagate: true
+  root:
+    level: !!python/name:logging.NOTSET
+    handlers: [docker]
+  handlers:
+    docker:
+      class: logging.StreamHandler
+      stream: ext://sys.stdout
+      formatter: dockerjson
+      level: !!python/name:logging.NOTSET
+    apache:
+      class: logging.StreamHandler
+      stream: ext://sys.stdout
+      formatter: apache
+      level: !!python/name:logging.NOTSET
+  formatters:
+    dockerjson:
+      '()': app.misc.logging.DockerJsonFormatter
+    apache:
+      '()': app.misc.logging.ApacheFormatter
+
+auth:
+  basic:
+    enable: {{env.get('BASIC_AUTH_ENABLE', False) | string | upper == "TRUE"}}
+    login: "{{env.get('BASIC_AUTH_LOGIN', '')}}"
+    password: "{{env.get('BASIC_AUTH_PASSWORD', '')}}"
+  sso:
+    enable: {{env.get('SSO_ENABLE', False) | string | upper == "TRUE"}}
+    client_id: "{{env.get('SSO_CLIENT_ID', '')}}"
+    client_secret: "{{env.get('SSO_CLIENT_SECRET', '')}}"
+    host : "{{env.get('SSO_HOST', '')}}"
+    realm_name: "{{env.get('SSO_REALM_NAME', '')}}"
+
+db:
+  dry_run: {{env.get("DB_DRY_RUN", False) | string | upper == "TRUE"}}
+  engine: {{env.get("DB_ENGINE", "mysql")}}
+  mysql:
+    hostname: {{ env["DB_HOSTNAME"] }}
+    port: {{ env.get("DB_TCP_PORT", 3306) | int }}
+    username: {{ env["DB_USERNAME"] }}
+    password: {{ env["DB_PASSWORD"] }}
+    database: {{ env.get("DB_DATABASE", "default") }}
+    program: "demo"
+  postgresql:
+    hostname: {{ env["DB_HOSTNAME"] }}
+    port: {{ env.get("DB_TCP_PORT", 5432) | int }}
+    username: {{ env["DB_USERNAME"] }}
+    password: {{ env["DB_PASSWORD"] }}
+    database: {{ env.get("DB_DATABASE", "default") }}
+    program: "demo"

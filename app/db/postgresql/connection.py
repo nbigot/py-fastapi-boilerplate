@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 # pylint: disable=W0718,R0912,R0915
 
-from typing import List, Union
 import uuid
+from typing import List, Union
+
 import psycopg2
-from app.exception import AppException
-from app.exception import AppDBConnectionError
+
 from app.db.postgresql.helper import get_postgresql_cnx, sql_execute, sql_select
+from app.exception import AppDBConnectionError, AppException
 
 
 class PostgreSQLConnectionArgs:

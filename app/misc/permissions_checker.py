@@ -5,20 +5,9 @@ from typing import Optional, Tuple
 import jwt
 from fastapi import Depends, HTTPException, Request
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-from starlette.authentication import (
-    AuthCredentials,
-    AuthenticationBackend,
-    BaseUser,
-    UnauthenticatedUser,
-)
+from starlette.authentication import AuthCredentials, AuthenticationBackend, BaseUser, UnauthenticatedUser
 
-from app.exception import (
-    AppException,
-    AuthException,
-    AuthHeaderException,
-    JWTDecodeException,
-    JWTExpiredSignatureError,
-)
+from app.exception import AppException, AuthException, AuthHeaderException, JWTDecodeException, JWTExpiredSignatureError
 from app.misc.constants import TAG_ADMIN
 
 
